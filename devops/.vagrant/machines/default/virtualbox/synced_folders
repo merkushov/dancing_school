@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/ubuntu/DancingSchool":{"guestpath":"/home/ubuntu/DancingSchool","hostpath":"/home/victor/Work/OneRobot/DancingSchool","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/victor/Work/OneRobot/DancingSchool/devops","disabled":false,"__vagrantfile":true}}}
