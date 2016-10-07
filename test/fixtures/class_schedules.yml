@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_begin: 2016-10-06 20:37:56
+  date_end: 2016-10-06 20:37:56
+  cost: 9.99
+  class_type: one
+  location: one
+  user: one
+
+two:
+  date_begin: 2016-10-06 20:37:56
+  date_end: 2016-10-06 20:37:56
+  cost: 9.99
+  class_type: two
+  location: two
+  user: two
