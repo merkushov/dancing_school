@@ -26,6 +26,7 @@ if [[ ! `sudo -u postgres bash -c "psql -tAc \"SELECT 1 FROM pg_database WHERE d
     sudo -u postgres bash -c "psql $PG_DATABASE < /home/vagrant/wspace/sql/schema.sql"
 fi
 
+sudo -u postgres bash -c "psql -c \"ALTER USER $PG_USER CREATEDB;\""
 
 # ====================================================================
 # Редактировать pg_hba.conf
