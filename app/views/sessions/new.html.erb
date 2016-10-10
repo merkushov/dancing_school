@@ -1,0 +1,50 @@
+<section id="content_wrapper">
+  <!-- Begin: Content-->
+  <section id="content">
+    <div id="login" class="admin-form theme-info mw500">
+      <!-- Login Logo-->
+      <div class="row table-layout text-center">
+        <h1>Админка</h1>
+      </div>
+      <!-- Login Panel/Form-->
+      <div class="panel mt30 mb25">
+        <%= form_for(:session, url: login_path) do |f| %>
+          <div class="panel-body bg-light p25 pb15">
+            <div class="section">
+              <%= f.label( :email, class: "field-label text-muted fs18 mb10" ) %>
+              <%= f.label( :email, class: "field prepend-icon" ) do %>
+                <%= f.email_field( :email, class: "gui-input" ) %>
+                <%= f.label( :email, class: "field-icon" ) do %>
+                  <% raw('<i class="fa fa-user"></i>') %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="section">
+              <%= f.label( :password, 'Пароль', class: "field-label text-muted fs18 mb10" ) %>
+              <%= f.label( :password, class: "field prepend-icon" ) do %>
+                <%= f.password_field( :password, class: "gui-input" ) %>
+                <%= f.label( :password, class: "field-icon" ) do %>
+                  <% raw('<i class="fa fa-lock"></i>') %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="panel-footer clearfix">
+            <%= f.submit "Войти", class: "button btn-primary mr10 pull-right" %>
+
+            <%= label_tag :remember, nil, class: "switch ib switch-primary mt10" do %>
+              <%= check_box_tag :remember %>
+              <%= label_tag( :remember, '', data: { on: "Да", off: "Нет" } )%>
+              <span>Запомнить меня</span>
+            <% end %>
+
+          </div>
+        <% end %>
+      </div>
+      <!-- Registration Links-->
+      <div class="login-links">
+        <p><% link_to "Забыли пароль?", login_path, class: "active" %></p>
+      </div>
+    </div>
+  </section>
+</section>

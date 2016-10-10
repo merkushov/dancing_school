@@ -10,6 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require admin-tools/admin-forms/css/admin-forms.css
+ *= require skin/default_skin/css/theme.css
  *= require_self
  */
+
+.admin-form label,
+.admin-form input,
+.admin-form button,
+.admin-form select,
+.admin-form textarea {
+  font-size: 16px;
+}

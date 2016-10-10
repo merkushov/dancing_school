@@ -4,20 +4,20 @@ one:
   first_name: MyString
   last_name: MyString
   middle_name: MyString
-  email: MyString
-  phone_mobile: MyString
+  email: test@mail.com
+  phone_mobile: 987654321
   birthday: 2016-10-06
-  gender: MyString
-  photo: MyString
+  gender: w
+  photo: /foo/bar/01.jpg
   description: MyText
 
 two:
   first_name: MyString
   last_name: MyString
-  middle_name: MyString
+  middle_name: null
   email: MyString
-  phone_mobile: MyString
+  phone_mobile: 1234567890
   birthday: 2016-10-06
-  gender: MyString
-  photo: MyString
+  gender: m
+  photo: /foo/bar
   description: MyText

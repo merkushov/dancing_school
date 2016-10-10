@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+
+//= require plugins/core.min.js
+//= require js/utility/utility.js
+//= require js/main.js
+
+// require_tree .
