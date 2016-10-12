@@ -31,14 +31,14 @@ ActiveRecord::Schema.define(version: 20161006204438) do
     t.index ["user_id"], name: "index_class_schedules_on_user_id", using: :btree
   end
 
-  create_table "class_schedules_people", id: false, force: :cascade do |t|
-    t.integer "person_id",                         null: false
+  create_table "class_schedules_customers", id: false, force: :cascade do |t|
+    t.integer "customer_id",                       null: false
     t.integer "class_schedule_id",                 null: false
     t.boolean "is_paid",           default: false
-    t.index ["class_schedule_id", "person_id"], name: "index_class_schedules_people_on_class_schedule_id_and_person_id", using: :btree
-    t.index ["class_schedule_id"], name: "index_class_schedules_people_on_class_schedule_id", using: :btree
-    t.index ["person_id", "class_schedule_id"], name: "index_class_schedules_people_on_person_id_and_class_schedule_id", using: :btree
-    t.index ["person_id"], name: "index_class_schedules_people_on_person_id", using: :btree
+    t.index ["class_schedule_id", "customer_id"], name: "index_class_schedule_id_customer_id", using: :btree
+    t.index ["class_schedule_id"], name: "index_class_schedules_customers_on_class_schedule_id", using: :btree
+    t.index ["customer_id", "class_schedule_id"], name: "index_customer_id_class_schedule_id", using: :btree
+    t.index ["customer_id"], name: "index_class_schedules_customers_on_customer_id", using: :btree
   end
 
   create_table "class_types", force: :cascade do |t|
@@ -48,15 +48,7 @@ ActiveRecord::Schema.define(version: 20161006204438) do
     t.index ["name"], name: "index_class_types_on_name", using: :btree
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string   "name",        limit: 255, null: false
-    t.string   "address"
-    t.text     "description"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "people", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string   "first_name",   limit: 127, null: false
     t.string   "last_name",    limit: 127, null: false
     t.string   "middle_name",  limit: 127
@@ -68,9 +60,17 @@ ActiveRecord::Schema.define(version: 20161006204438) do
     t.text     "description"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["email"], name: "index_people_on_email", using: :btree
-    t.index ["first_name", "last_name", "middle_name"], name: "index_people_on_first_name_and_last_name_and_middle_name", using: :btree
-    t.index ["phone_mobile"], name: "index_people_on_phone_mobile", using: :btree
+    t.index ["email"], name: "index_customers_on_email", using: :btree
+    t.index ["first_name", "last_name", "middle_name"], name: "index_customers_on_first_name_and_last_name_and_middle_name", using: :btree
+    t.index ["phone_mobile"], name: "index_customers_on_phone_mobile", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name",        limit: 255, null: false
+    t.string   "address"
+    t.text     "description"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 20161006204438) do
   add_foreign_key "class_schedules", "class_types"
   add_foreign_key "class_schedules", "locations"
   add_foreign_key "class_schedules", "users"
-  add_foreign_key "class_schedules_people", "class_schedules"
-  add_foreign_key "class_schedules_people", "people"
+  add_foreign_key "class_schedules_customers", "class_schedules"
+  add_foreign_key "class_schedules_customers", "customers"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
 end

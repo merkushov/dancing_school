@@ -1,6 +1,6 @@
-class CreatePeople < ActiveRecord::Migration[5.0]
+class CreateCustomers < ActiveRecord::Migration[5.0]
   def change
-    create_table :people do |t|
+    create_table :customers do |t|
       t.string :first_name, limit: 127, null: false
       t.string :last_name, limit: 127, null: false
       t.string :middle_name, limit: 127
@@ -13,8 +13,8 @@ class CreatePeople < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :people, :email
-    add_index :people, :phone_mobile
-    add_index :people, [:first_name, :last_name, :middle_name]
+    add_index :customers, :email
+    add_index :customers, :phone_mobile
+    add_index :customers, [:first_name, :last_name, :middle_name]
   end
 end
