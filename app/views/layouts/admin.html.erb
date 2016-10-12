@@ -17,7 +17,7 @@
     <%= javascript_include_tag 'html5shiv' %>
     <![endif]-->
   </head>
-  <body class="dashboard-page">
+  <body class="admin-elements-page">
 
     <!-- Start: Main-->
     <div id="main">
@@ -29,7 +29,7 @@
       <section id="content_wrapper">
         
         <%= render 'admin/topbar' %>
-        <%= render 'admin/header' %>
+        <%#= render 'admin/header' %>
 
         <!-- Begin: Content-->
         <section id="content" class="table-layout animated fadeIn">
@@ -42,15 +42,6 @@
     </div>
 
     <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
-
-    <script type="text/javascript">
-      jQuery(document).ready(function () {
-        "use strict";
-
-        // Init Theme Core
-        Core.init();
-      });
-    </script>
 
   </body>
 </html>

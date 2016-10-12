@@ -14,9 +14,14 @@
     <ul class="nav sidebar-menu">
       <li class="sidebar-label pt35"></li>
       
-      <li class="active">
+      <li class="<%= controller.controller_name == 'dashboard' ? 'active' : '' %>">
         <a href="<%= admin_dashboard_index_path %>">
           <span class="fa fa-home"></span><span class="sidebar-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="<%= controller.controller_name == 'people' ? 'active' : '' %>">
+        <a href="<%= admin_people_path %>">
+          <span class="fa fa-users"></span><span class="sidebar-title">Ученики </span>
         </a>
       </li>
 

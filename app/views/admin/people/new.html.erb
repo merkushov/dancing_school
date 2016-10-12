@@ -1,0 +1,115 @@
+<div class="tray tray-center">
+  <div class="mw700 center-block">
+    <!-- <div class="content-header">
+      <h2>Создать нового Ученика</h2>
+    </div> -->
+
+    <div class="admin-form theme-primary">
+      <div class="panel heading-border panel-primary">
+
+        <div class="panel-heading">
+          <span class="panel-title"><i class="fa fa-pencil-square"></i>Создать Ученика</span>
+        </div>
+
+        <form id="form-ui" method="post" action="">
+          <div class="panel-body bg-light">
+          
+            <div class="section-divider mb40"><span>Основная информация</span></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <label for="last_name" class="field-label">Фамилия</label>
+                  <input id="last_name" name="last_name" placeholder="" class="gui-input" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <label for="first_name" class="field-label">Имя</label>
+                  <input id="first_name" name="first_name" placeholder="" class="gui-input" type="text">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <label for="middle_name" class="field-label">Отчество</label>
+                  <input id="middle_name" name="middle_name" placeholder="" class="gui-input" type="text">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <label for="birthday" class="field-label">День рождения</label>
+                  <label for="last_name" class="field prepend-icon">
+                    <input id="birthday" maxlength="10" autocomplete="off" placeholder="11/11/1111" class="form-control date" type="text" name="birthday">
+                    <label for="birthday" class="field-icon"><i class="fa fa-calendar"></i></label>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="section row">
+              <div class="col-md-6">
+                <div class="section mb15">
+                  <label for="gender" class="field-label">Пол</label>
+                  <div class="option-group field">
+                    <label class="option option-primary">
+                      <input name="gender" type="radio"><span class="radio"></span>М
+                    </label>
+                    <label class="option option-primary">
+                      <input name="gender" type="radio"><span class="radio"></span>Ж
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-divider mb40"><span>Контакты</span></div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <label for="email" class="field-label">email</label>
+                  <label for="phone" class="field prepend-icon">
+                    <input id="email" name="email" placeholder="" class="gui-input" type="email">
+                    <label for="phone" class="field-icon"><i class="fa fa-envelope"></i></label>
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <label for="phone" class="field-label">Телефон</label>
+                  <label for="phone" class="field prepend-icon">
+                    <input id="phone" name="phone" maxlength="10" autocomplete="off" placeholder="(999) 999-9999" class="form-control phone" type="text">
+                    <label for="phone" class="field-icon"><i class="fa fa-phone"></i></label>
+                  </label>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="section-divider mb40"><span>Дополнительная информация</span></div>
+
+            <div class="row">
+              <div class="section">
+                <label class="field prepend-icon">
+                  <textarea name="description" class="gui-textarea"></textarea>
+                  <span class="input-footer">
+                    <strong>Подсказка:</strong> Для подростка следует указать контакты родителей
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-footer">
+            <button type="submit" class="button btn-primary">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
