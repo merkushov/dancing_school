@@ -43,5 +43,21 @@
 
     <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
 
+    <script type="text/javascript">
+      jQuery(document).ready(function () {
+        "use strict";
+
+        // Create new Notification
+        <% flash.each do |key, value| %>
+        <% notify_title = case key when "success" then "Успех" when "error" then "Ошибка" else "Информация" end %>
+          new PNotify({
+            title: '<%= notify_title %>',
+            text: '<%= value %>',
+            type: "<%= key %>",
+          });
+        <% end %>
+      });
+    </script>
+
   </body>
 </html>

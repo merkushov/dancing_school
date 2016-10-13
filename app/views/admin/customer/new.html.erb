@@ -1,8 +1,5 @@
 <div class="tray tray-center">
   <div class="mw700 center-block">
-    <!-- <div class="content-header">
-      <h2>Создать нового Ученика</h2>
-    </div> -->
 
     <div class="admin-form theme-primary">
       <div class="panel heading-border panel-primary">
@@ -11,7 +8,7 @@
           <span class="panel-title"><i class="fa fa-pencil-square"></i>Создать Ученика</span>
         </div>
 
-        <form id="form-ui" method="post" action="">
+        <%= form_for(:customer, url: admin_customer_index_path, id: "form-ui") do |f| %>
           <div class="panel-body bg-light">
           
             <div class="section-divider mb40"><span>Основная информация</span></div>
@@ -19,22 +16,22 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="section">
-                  <label for="last_name" class="field-label">Фамилия</label>
-                  <input id="last_name" name="last_name" placeholder="" class="gui-input" type="text">
+                  <%= f.label( :last_name, "Фамилия", class: "field-label" ) %>
+                  <%= f.text_field( :last_name, autocomplete: "off", class: "gui-input" ) %>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="section">
-                  <label for="first_name" class="field-label">Имя</label>
-                  <input id="first_name" name="first_name" placeholder="" class="gui-input" type="text">
+                  <%= f.label( :first_name, "Имя", class: "field-label" ) %>
+                  <%= f.text_field( :first_name, autocomplete: "off", class: "gui-input" ) %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="section">
-                  <label for="middle_name" class="field-label">Отчество</label>
-                  <input id="middle_name" name="middle_name" placeholder="" class="gui-input" type="text">
+                  <%= f.label( :middle_name, "Отчество", class: "field-label" ) %>
+                  <%= f.text_field( :middle_name, autocomplete: "off", class: "gui-input" ) %>
                 </div>
               </div>
             </div>
@@ -42,11 +39,13 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="section">
-                  <label for="birthday" class="field-label">День рождения</label>
-                  <label for="last_name" class="field prepend-icon">
-                    <input id="birthday" maxlength="10" autocomplete="off" placeholder="11/11/1111" class="form-control date" type="text" name="birthday">
-                    <label for="birthday" class="field-icon"><i class="fa fa-calendar"></i></label>
-                  </label>
+                  <%= f.label( :birthday, "День рождения", class: "field-label" ) %>
+                  <%= f.label( :birthday, class: "field prepend-icon" ) do %>
+                    <%= f.text_field( :birthday, maxlength: 10, autocomplete: "off", placeholder: "11/11/1111", class: "gui-input form-control date" ) %>
+                    <%= f.label( :birthday, class: "field-icon" ) do %>
+                      <% raw('<i class="fa fa-calendar"></i>') %>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -54,14 +53,16 @@
             <div class="section row">
               <div class="col-md-6">
                 <div class="section mb15">
-                  <label for="gender" class="field-label">Пол</label>
+                  <%= f.label( :gender, "Пол", class: "field-label" ) %>
                   <div class="option-group field">
-                    <label class="option option-primary">
-                      <input name="gender" type="radio"><span class="radio"></span>М
-                    </label>
-                    <label class="option option-primary">
-                      <input name="gender" type="radio"><span class="radio"></span>Ж
-                    </label>
+                    <%= f.label( nil, nil, for: nil, class: "option option-primary" ) do %>
+                      <%= f.radio_button( :gender, "m" ) %>
+                      <span class="radio"></span> мужчина
+                    <% end %>
+                    <%= f.label( nil, nil, for: nil, class: "option option-primary" ) do %>
+                      <%= f.radio_button( :gender, "w" ) %>
+                      <span class="radio"></span> женщина
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -72,21 +73,25 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="section">
-                  <label for="email" class="field-label">email</label>
-                  <label for="phone" class="field prepend-icon">
-                    <input id="email" name="email" placeholder="" class="gui-input" type="email">
-                    <label for="phone" class="field-icon"><i class="fa fa-envelope"></i></label>
-                  </label>
+
+                  <%= f.label( :email, "Email", class: "field-label" ) %>
+                  <%= f.label( :email, class: "field prepend-icon" ) do %>
+                    <%= f.email_field( :email, autocomplete: "off", class: "gui-input" ) %>
+                    <%= f.label( :email, class: "field-icon" ) do %>
+                      <% raw('<i class="fa fa-envelope"></i>') %>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="section">
-                  <label for="phone" class="field-label">Телефон</label>
-                  <label for="phone" class="field prepend-icon">
-                    <input id="phone" name="phone" maxlength="10" autocomplete="off" placeholder="(999) 999-9999" class="form-control phone" type="text">
-                    <label for="phone" class="field-icon"><i class="fa fa-phone"></i></label>
-                  </label>
-                  
+                  <%= f.label( :phone_mobile, "Телефон (мобильный)", class: "field-label" ) %>
+                  <%= f.label( :phone_mobile, class: "field prepend-icon" ) do %>
+                    <%= f.telephone_field( :phone_mobile, maxlength: 10, autocomplete: "off", placeholder: "(999) 999-9999", class: "gui-input phone" ) %>
+                    <%= f.label( :phone_mobile, class: "field-icon" ) do %>
+                      <% raw('<i class="fa fa-phone"></i>') %>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -95,20 +100,20 @@
 
             <div class="row">
               <div class="section">
-                <label class="field prepend-icon">
-                  <textarea name="description" class="gui-textarea"></textarea>
-                  <span class="input-footer">
-                    <strong>Подсказка:</strong> Для подростка следует указать контакты родителей
-                  </span>
-                </label>
+                <%= f.label( :description, class: "field prepend-icon" ) do %>
+                  <%= f.text_area( :description, autocomplete: "off", class: "gui-textarea br-light bg-light" ) %>
+                  <%= f.label( :description, class: "field-icon" ) do %>
+                    <% raw('<i class="fa fa-edit"></i>') %>
+                  <% end %>
+                <% end %>
               </div>
             </div>
           </div>
 
           <div class="panel-footer">
-            <button type="submit" class="button btn-primary">Сохранить</button>
+            <%= f.submit "Сохранить", class: "button btn-primary" %>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>

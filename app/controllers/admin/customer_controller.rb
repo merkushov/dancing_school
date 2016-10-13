@@ -28,12 +28,11 @@ class Admin::CustomerController < Admin::BaseController
 
     respond_to do |format|
       if @customer.save
-        # format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        flash[:success] = 'Customer was successfully created';
-        format.html { redirect_to @customer }
+        flash[:success] = 'Новый Ученик успешно создан'
+        format.html { redirect_to admin_customer_index_path }
         format.json { render :show, status: :created, location: @customer }
       else
-        flash[:danger] = 'There was a problem creating the Customer.';
+        flash[:danger] = 'Возникли некоторые проблемы с созданием нового Ученика';
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
@@ -45,7 +44,6 @@ class Admin::CustomerController < Admin::BaseController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        # format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
         flash[:success] = 'Customer was successfully updated.';
         format.html { redirect_to @customer }
         format.json { render :show, status: :ok, location: @customer }
@@ -62,9 +60,8 @@ class Admin::CustomerController < Admin::BaseController
   def destroy
     @customer.destroy
     respond_to do |format|
-      # format.html { redirect_to customer_url, notice: 'Customer was successfully destroyed.' }
-      flash[:success] = 'Customer was successfully destroyed.';
-      format.html { redirect_to customer_url }
+      flash[:success] = 'Ученик успешно удалён';
+      format.html { redirect_to admin_customer_index_path }
       format.json { head :no_content }
     end
   end
@@ -77,6 +74,6 @@ class Admin::CustomerController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:title, :notes)
+      params.require(:customer).permit( :first_name, :last_name, :middle_name, :email, :phone_mobile, :birthday, :gender, :description )
     end
 end
