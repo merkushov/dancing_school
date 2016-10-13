@@ -1,6 +1,9 @@
 <!-- Start: Header-->
 <header class="navbar undefined">
-  <div class="navbar-branding"><a href="index.html" class="navbar-brand text-uppercase">Школа</a><span id="toggle_sidemenu_l" class="fa fa-bars"></span></div>
+  <div class="navbar-branding">
+    <a href="<%= admin_dashboard_index_path %>" class="navbar-brand text-uppercase">Школа</a>
+    <span id="toggle_sidemenu_l" class="fa fa-bars"></span>
+  </div>
   <ul class="nav navbar-nav navbar-left"></ul>
   <form role="search" class="navbar-form navbar-left navbar-search alt"><span class="hide visible-md-inline-block visible-lg-inline-block fa fa-search fs18"></span>
     <div class="form-group">
@@ -8,11 +11,11 @@
     </div>
   </form>
   <ul class="nav navbar-nav navbar-right">
-    <li><img src="/avatar-placeholder.png" width="70" height="70" alt="avatar"></li>
+    <li><img src="/avatar-placeholder-01.png" width="70" height="70" alt="avatar"></li>
     <li class="dropdown menu-merge"><a href="#" data-toggle="dropdown" class="dropdown-toggle fw600 p15"><span class="fa fa-angle-down"></span> </a>
       <ul role="menu" class="dropdown-menu list-group dropdown-persist w250">
         <li class="dropdown-header clearfix">
-          <div class="pull-left ml10">
+          <!-- <div class="pull-left ml10">
             <select id="user-status">
               <optgroup label="Current Status:">
                 <option value="1-1">Away</option>
@@ -33,7 +36,7 @@
         </li>
         <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-envelope"></span> Messages<span class="label label-warning">2</span></a></li>
         <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-user"></span> Friends<span class="label label-warning">6</span></a></li>
-        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-bell"></span> Notifications</a></li>
+        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-bell"></span> Notifications</a></li> -->
         <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-gear"></span> Settings</a></li>
         <li class="dropdown-footer">
           <%= link_to( logout_path, method: "delete" ) do raw('<span class="fa fa-power-off pr5"></span> Выход') end %>
