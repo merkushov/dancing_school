@@ -58,12 +58,17 @@ class Admin::CustomersController < Admin::BaseController
   # DELETE /customer/1
   # DELETE /customer/1.json
   def destroy
-    @customer.destroy
-    respond_to do |format|
-      flash[:success] = 'Ученик успешно удалён';
-      format.html { redirect_to admin_customers_path }
-      format.json { head :no_content }
-    end
+
+    flash[:danger] = "Удаление Учеников не предусмотрено"
+    format.html { redirect_to admin_customers_path }
+    format.json { head :no_content }
+
+    # @customer.destroy
+    # respond_to do |format|
+    #   flash[:success] = 'Ученик успешно удалён';
+    #   format.html { redirect_to admin_customers_path }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

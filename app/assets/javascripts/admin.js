@@ -7,4 +7,6 @@
 //= require_self
 
 // Init Theme Core
-Core.init();
+jQuery(document).ready(function () {
+  Core.init();
+});

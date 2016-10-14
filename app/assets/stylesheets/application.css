@@ -12,6 +12,7 @@
  *
  *= require admin-tools/admin-forms/css/admin-forms.css
  *= require skin/default_skin/css/theme.css
+ *= require plugins/css/footable.core.min.css
  *= require_self
  */
 
