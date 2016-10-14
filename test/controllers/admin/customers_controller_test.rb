@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::CustomerControllerTest < ActionDispatch::IntegrationTest
+class Admin::CustomersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get admin_customer_index_url
     assert_response :success

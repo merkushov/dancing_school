@@ -2,7 +2,7 @@
 //= require js/utility/utility.js
 //= require js/main.js
 
-//= require admin/customer
+//= require admin/customers
 
 //= require_self
 

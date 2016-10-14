@@ -1,10 +1,10 @@
-class Admin::CustomerController < Admin::BaseController
+class Admin::CustomersController < Admin::BaseController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customer
   # GET /customer.json
   def index
-    @customers = Customer.all
+    @customers = Customer.all.order( created_at: "desc" )
   end
 
   # GET /customer/1
@@ -29,7 +29,7 @@ class Admin::CustomerController < Admin::BaseController
     respond_to do |format|
       if @customer.save
         flash[:success] = 'Новый Ученик успешно создан'
-        format.html { redirect_to admin_customer_index_path }
+        format.html { redirect_to admin_customers_path }
         format.json { render :show, status: :created, location: @customer }
       else
         flash[:danger] = 'Возникли некоторые проблемы с созданием нового Ученика';
@@ -44,11 +44,11 @@ class Admin::CustomerController < Admin::BaseController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        flash[:success] = 'Customer was successfully updated.';
-        format.html { redirect_to @customer }
+        flash[:success] = 'Данные Ученика успешно обновлены';
+        format.html { redirect_to [:admin, @customer] }
         format.json { render :show, status: :ok, location: @customer }
       else
-        flash[:danger] = 'There was a problem updating the Customer.'
+        flash[:danger] = 'Возникли проблемы с обновлением данныех Ученика'
         format.html { render :edit }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
@@ -61,7 +61,7 @@ class Admin::CustomerController < Admin::BaseController
     @customer.destroy
     respond_to do |format|
       flash[:success] = 'Ученик успешно удалён';
-      format.html { redirect_to admin_customer_index_path }
+      format.html { redirect_to admin_customers_path }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,64 @@
+<div class="tray tray-center">
+  <div id="spy3" class="panel">
+    <!-- <div class="panel-heading">
+      <span class="panel-title">
+        <span class="fa fa-angle-double-right"></span>
+        FooTable w/Pagination
+      </span>
+      <div class="pull-right">
+        <code class="mr20">data-page-navigation=".pagination"</code>
+      </div>
+    </div> -->
+    <div class="panel-body pn">
+      <table data-page-navigation=".pagination" data-page-size="6" class="table footable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ФИО</th>
+            <th>Дата регистрации</th>
+            <th>Посещений</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |c| %>
+          <tr>
+            <td><%= c.id %></td>
+            <td><%= c.last_name + " " + c.first_name + " " + c.middle_name %></td>
+            <td><%= c.created_at.strftime("%d %B %Y %H:%M") %></td>
+            <td>0</td>
+            <td>
+              <div class="btn-group text-right">
+                <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="<%= edit_admin_customer_path(c) %>">Edit</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li class="divider"></li>
+                  <li class="active"><a href="#">Active</a></li>
+                  <li><a href="#">Suspend</a></li>
+                  <li><a href="#">Remove</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+        <tfoot class="footer-menu">
+          <tr>
+            <td colspan="5">
+              <nav class="text-right">
+                <ul class="pagination hide-if-no-paging"></ul>
+              </nav>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+<a href="<%= new_admin_customer_path %>" class="btn ladda-button btn-primary">
+  <span class="ladda-label">Создать нового</span>
+</a>
+
+
+</div>
