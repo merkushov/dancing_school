@@ -1,0 +1,22 @@
+<%= form_for([:admin, @class_type], id: "form-ui") do |f| %>
+  <div class="panel-body bg-light">
+  
+    <div class="section-divider mb40"><span>Основная информация</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section">
+          <%= f.label( :name, "Наименование", class: "field-label" ) %>
+          <%= f.text_field( :name, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="panel-footer">
+    <%= f.submit "Сохранить", class: "button btn-primary" %>
+  </div>
+<% end %>

@@ -10,9 +10,11 @@ Rails.application.routes.draw do
 
     resources :customers
     resources :class_schedules
+    resources :class_types
   end
 
   # хак TODO: разобраться почему не работает вызов DELETE
   get "/admin/class_schedules/:id/delete", to: "admin/class_schedules#destroy", as: "delete_admin_class_schedule"
+  get "/admin/class_types/:id/delete", to: "admin/class_types#destroy", as: "delete_admin_class_type"
 
 end
