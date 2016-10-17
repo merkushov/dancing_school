@@ -1,0 +1,23 @@
+<div class="page-heading">
+  <div class="media clearfix">
+    <div class="media-body va-m">
+
+      <h2 class="media-heading">
+        <%= @class_schedule.date_begin.strftime("%d %B %Y %H:%M") %>
+        - <%= @class_schedule.date_end.strftime("%H:%M") %>
+      </h2>
+      <p class="lead"></p>
+      
+
+      <!-- <div class="col-md-8"> -->
+        <div class="row">
+          <div class="col-md-6">
+            <label class="field-label">Стоимость занятия</label>
+          </div>
+          <div class="col-md-6"><%= @class_schedule.cost %></div>
+        </div>
+      <!-- </div> -->
+
+    </div>
+  </div>
+</div>

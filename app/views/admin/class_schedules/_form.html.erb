@@ -1,0 +1,41 @@
+<%= form_for([:admin, @class_schedule], id: "form-ui") do |f| %>
+  <div class="panel-body bg-light">
+  
+    <div class="section-divider mb40"><span>Основная информация</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section">
+          <%= f.label( :date_begin, "Дата начала", class: "field-label" ) %>
+          <%= f.label( :date_begin, "Дата начала", class: "field prepend-icon" ) do %>
+            <%= f.text_field( :date_begin, value: @class_schedule.date_begin.present? ? @class_schedule.date_begin.strftime("%d/%m/%Y %H:%M") : "", autocomplete: "off", class: "gui-input" ) %>
+            <%= f.label( :date_begin, class: "field-icon" ) do %>
+              <% raw('<i class="fa fa-calendar-o"></i>') %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :date_end, "Дата окончания", class: "field-label" ) %>
+          <%= f.label( :date_end, class: "field prepend-icon" ) do %>
+            <%= f.text_field( :date_end, value: @class_schedule.date_end.present? ? @class_schedule.date_end.strftime("%d/%m/%Y %H:%M") : "", autocomplete: "off", class: "gui-input" ) %>
+            <%= f.label( :date_end, class: "field-icon" ) do %>
+              <% raw('<i class="fa fa-calendar-o"></i>') %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :cost, "Стоимость посещения (руб.)", class: "field-label" ) %>
+          <%= f.text_field( :cost, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="panel-footer">
+    <%= f.submit "Сохранить", class: "button btn-primary" %>
+  </div>
+<% end %>

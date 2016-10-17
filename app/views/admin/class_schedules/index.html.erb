@@ -1,0 +1,55 @@
+<div class="tray tray-center">
+  <div id="spy3" class="panel">
+    <div class="panel-body pn">
+      <table data-page-navigation=".pagination" data-sorting="true" data-page-size="6" class="table footable">
+        <thead>
+          <tr>
+            <th data-breakpoints="xs sm md" data-type="number">#</th>
+            <th data-type="number">Дата начала</th>
+            <th data-type="number">Дата окончания</th>
+            <th data-breakpoints="xs sm" data-type="number">Стоимость</th>
+            <th data-sortable="false">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @class_schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.id %></td>
+            <td data-sort-value="<%= schedule.date_begin.strftime("%Y%m%d%H%M") %>"><%= schedule.date_begin.strftime("%d %B %Y %H:%M") %></td>
+            <td data-sort-value="<%= schedule.date_end.strftime("%Y%m%d%H%M") %>"><%= schedule.date_end.strftime("%d %B %Y %H:%M") %></td>
+            <td><%= schedule.cost %></td>
+            <td>
+              <div class="btn-group text-right">
+                <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="<%= edit_admin_class_schedule_path(schedule) %>">Редактировать</a></li>
+                  <li><a href="<%= admin_class_schedule_path(schedule) %>">Посмотреть</a></li>
+                  <li>
+                  <%= link_to "Удалить", delete_admin_class_schedule_path(schedule), method: :delete %>
+                  <!-- <a href="<%= admin_class_schedule_path(schedule) %>">Удалить</a> -->
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+        <tfoot class="footer-menu">
+          <tr>
+            <td colspan="5">
+              <nav class="text-right">
+                <ul class="pagination hide-if-no-paging"></ul>
+              </nav>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+<a href="<%= new_admin_class_schedule_path %>" class="btn ladda-button btn-primary">
+  <span class="ladda-label">Создать Занятие</span>
+</a>
+
+
+</div>

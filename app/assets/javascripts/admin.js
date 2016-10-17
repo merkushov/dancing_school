@@ -3,6 +3,7 @@
 //= require js/main.js
 
 //= require admin/customers
+//= require admin/class_schedules
 
 //= require_self
 
