@@ -24,14 +24,14 @@
           <span class="fa fa-users"></span><span class="sidebar-title">Ученики </span>
         </a>
       </li>
-      <li><a href="#" class="accordion-toggle"><span class="fa fa-money"></span><span class="sidebar-title">Биллинг</span><span class="caret"></span></a>
+      <li><a href="#" class="accordion-toggle <%= controller.controller_name == 'class_schedules' ? 'menu-open' : '' %>"><span class="fa fa-money"></span><span class="sidebar-title">Биллинг</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
-          <li><a href="<%= admin_class_schedules_path %>">Занятия</a></li>
+          <li class="<%= controller.controller_name == 'class_schedules' ? 'active' : '' %>"><a href="<%= admin_class_schedules_path %>">Занятия</a></li>
         </ul>
       </li>
-      <li><a href="#" class="accordion-toggle"><span class="fa fa-book"></span><span class="sidebar-title">Справочники</span><span class="caret"></span></a>
+      <li><a href="#" class="accordion-toggle <%= controller.controller_name == 'class_types' ? 'menu-open' : '' %>"><span class="fa fa-book"></span><span class="sidebar-title">Справочники</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
-          <li><a href="<%= admin_class_types_path %>">Типы урока</a></li>
+          <li class="<%= controller.controller_name == 'class_types' ? 'active' : '' %>"><a href="<%= admin_class_types_path %>">Типы урока</a></li>
         </ul>
       </li>
 
