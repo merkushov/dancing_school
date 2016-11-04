@@ -30,6 +30,30 @@
           <%= f.text_field( :cost, autocomplete: "off", class: "gui-input" ) %>
         </div>
 
+        <div class="section">
+          <%= f.label( :user_id, "Преподаватель", class: "field-label" ) %>
+          <%= f.label( :user_id, class: "field select" ) do %>
+            <%= f.collection_select( :user_id,  User.all, :id, :first_name ) %>
+            <i class="arrow"></i>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :class_type_id, "Тип занятия", class: "field-label" ) %>
+          <%= f.label( :class_type_id, class: "field select" ) do %>
+            <%= f.collection_select( :class_type_id,  ClassType.all, :id, :name ) %>
+            <i class="arrow"></i>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :location_id, "Зал", class: "field-label" ) %>
+          <%= f.label( :location_id, class: "field select" ) do %>
+            <%= f.collection_select( :location_id,  Location.all, :id, :name ) %>
+            <i class="arrow"></i>
+          <% end %>
+        </div>
+
       </div>
     </div>
     

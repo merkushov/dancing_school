@@ -58,17 +58,30 @@ class Admin::CustomersController < Admin::BaseController
   # DELETE /customer/1
   # DELETE /customer/1.json
   def destroy
+    respond_to do |format|
+      flash[:danger] = "Удаление Учеников не предусмотрено"
+      format.html { redirect_to admin_customers_path }
+      format.json { head :no_content }
+    end
+  end
 
-    flash[:danger] = "Удаление Учеников не предусмотрено"
-    format.html { redirect_to admin_customers_path }
-    format.json { head :no_content }
+  # GET /customers/search
+  def search
+    like_string = "%#{params[:query]}%"
+    @customers = Customer.where(
+      "first_name LIKE ? OR last_name LIKE ? OR middle_name LIKE ?",
+      like_string,
+      like_string,
+      like_string,
+    ).limit(3).order('last_name asc')
 
-    # @customer.destroy
-    # respond_to do |format|
-    #   flash[:success] = 'Ученик успешно удалён';
-    #   format.html { redirect_to admin_customers_path }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.json {
+        # render json: @customers.map{ |item| "#{item.last_name} #{item.first_name} #{item.middle_name}" },
+        render json: @customers.map{ |item| { id: item.id, name: "#{item.last_name} #{item.first_name} #{item.middle_name}" } },
+        status: :ok
+      }
+    end
   end
 
   private

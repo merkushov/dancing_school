@@ -5,8 +5,10 @@
         <thead>
           <tr>
             <th data-breakpoints="xs sm md" data-type="number">#</th>
-            <th data-type="number">Дата начала</th>
-            <th data-type="number">Дата окончания</th>
+            <th data-type="number">Дата проведения</th>
+            <th>Преподаватель</th>
+            <th>Тип</th>
+            <th>Зал</th>
             <th data-breakpoints="xs sm" data-type="number">Стоимость</th>
             <th data-sortable="false">Действие</th>
           </tr>
@@ -15,8 +17,10 @@
           <% @class_schedules.each do |schedule| %>
           <tr>
             <td><%= schedule.id %></td>
-            <td data-sort-value="<%= schedule.date_begin.strftime("%Y%m%d%H%M") %>"><%= schedule.date_begin.strftime("%d %B %Y %H:%M") %></td>
-            <td data-sort-value="<%= schedule.date_end.strftime("%Y%m%d%H%M") %>"><%= schedule.date_end.strftime("%d %B %Y %H:%M") %></td>
+            <td data-sort-value="<%= schedule.date_begin.strftime("%Y%m%d%H%M") %>"><%= schedule.date_begin.strftime("%d %B %Y %H:%M") + " - " + schedule.date_end.strftime("%H:%M") %></td>
+            <td><%= schedule.user.full_name %></td>
+            <td><%= schedule.class_type.name %></td>
+            <td><%= schedule.location.name %></td>
             <td><%= schedule.cost %></td>
             <td>
               <div class="btn-group text-right">
@@ -36,7 +40,7 @@
         </tbody>
         <tfoot class="footer-menu">
           <tr>
-            <td colspan="5">
+            <td colspan="7">
               <nav class="text-right">
                 <ul class="pagination hide-if-no-paging"></ul>
               </nav>

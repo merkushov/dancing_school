@@ -34,7 +34,7 @@
         <%#= render 'admin/header' %>
 
         <!-- Begin: Content-->
-        <section id="content" class="table-layout animated fadeIn">
+        <section id="content" class="<%= yield(:no_table) ? '' : 'table-layout' %> animated fadeIn">
         <!-- <section id="content" class="animated fadeIn"> -->
           <%= yield %>
         </section>

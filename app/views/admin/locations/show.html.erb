@@ -1,0 +1,27 @@
+<div class="page-heading">
+  <div class="media clearfix">
+    <div class="media-body va-m">
+
+      <h2 class="media-heading">
+        Зал - <%= @location.name %>
+      </h2>
+      <p class="lead"></p>
+
+    </div>
+
+    <!-- <div class="col-md-8"> -->
+        <div class="row">
+          <div class="col-md-2">
+            <label class="field-label">Адрес</label>
+          </div>
+          <div class="col-md-10"><%= @location.address %></div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label class="field-label">Описание</label>
+          </div>
+          <div class="col-md-10"><%= @location.description %></div>
+        </div>
+      <!-- </div> -->
+  </div>
+</div>

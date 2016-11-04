@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006204438) do
+ActiveRecord::Schema.define(version: 20161101084846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,16 +29,6 @@ ActiveRecord::Schema.define(version: 20161006204438) do
     t.index ["date_end"], name: "index_class_schedules_on_date_end", using: :btree
     t.index ["location_id"], name: "index_class_schedules_on_location_id", using: :btree
     t.index ["user_id"], name: "index_class_schedules_on_user_id", using: :btree
-  end
-
-  create_table "class_schedules_customers", id: false, force: :cascade do |t|
-    t.integer "customer_id",                       null: false
-    t.integer "class_schedule_id",                 null: false
-    t.boolean "is_paid",           default: false
-    t.index ["class_schedule_id", "customer_id"], name: "index_class_schedule_id_customer_id", using: :btree
-    t.index ["class_schedule_id"], name: "index_class_schedules_customers_on_class_schedule_id", using: :btree
-    t.index ["customer_id", "class_schedule_id"], name: "index_customer_id_class_schedule_id", using: :btree
-    t.index ["customer_id"], name: "index_class_schedules_customers_on_customer_id", using: :btree
   end
 
   create_table "class_types", force: :cascade do |t|
@@ -99,11 +89,22 @@ ActiveRecord::Schema.define(version: 20161006204438) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.integer  "class_schedule_id"
+    t.integer  "customer_id"
+    t.boolean  "is_paid"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["class_schedule_id", "customer_id"], name: "index_visits_on_class_schedule_id_and_customer_id", unique: true, using: :btree
+    t.index ["class_schedule_id"], name: "index_visits_on_class_schedule_id", using: :btree
+    t.index ["customer_id"], name: "index_visits_on_customer_id", using: :btree
+  end
+
   add_foreign_key "class_schedules", "class_types"
   add_foreign_key "class_schedules", "locations"
   add_foreign_key "class_schedules", "users"
-  add_foreign_key "class_schedules_customers", "class_schedules"
-  add_foreign_key "class_schedules_customers", "customers"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "visits", "class_schedules"
+  add_foreign_key "visits", "customers"
 end

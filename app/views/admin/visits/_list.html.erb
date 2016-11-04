@@ -1,0 +1,57 @@
+<h2 id="visit-list-title">Ученики</h2>
+
+<div class="row">
+  <%= form_for( :visit, url: admin_visits_path, id: "form-ui") do |f| %>
+  <div class="col-md-8">
+    <%= f.hidden_field( :class_schedule_id, value: @class_schedule.id ) %>
+    <%= f.hidden_field( :customer_id ) %>
+    <%= f.label( :customer_name, class: "field prepend-icon" ) do %>
+      <%= f.text_field( :customer_name, autocomplete: "off", placeholder: "Поиск Ученика по ФИО", class: "form-control typeahead" ) %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= f.submit "Добавить Ученика к Занятию", disabled: true, class: "btn btn-primary post-add-customer-to-class" %>
+  </div>
+  <% end %>
+</div>
+
+<table class="table footable">
+  <thead>
+    <tr>
+      <th>ФИО</th>
+      <th>Оплатил</th>
+      <th>Последнее посещение</th>
+      <th>Кол-во посещений</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @visits.each do |visit| %>
+    <% customer = visit.customer %>
+    <% visit_key = "visit_#{visit.id}"  %>
+    <tr>
+      <td><%= customer.full_name %></td>
+      <td>
+        <%= label_tag( visit_key, nil, class: "switch switch-primary" ) do %>
+          <%= check_box_tag( visit_key, 1, visit.is_paid, { class: 'set-ajax-pay-satus', 'data-url': admin_visit_path(visit, {format: "json"}) }) %>
+          <%= label_tag( visit_key, '', data: { on: "Да", off: "Нет" } )%>
+        <% end %>
+      </td>
+      <td>-</td>
+      <td>-</td>
+      <td>
+        <div class="btn-group text-right">
+          <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
+          <ul role="menu" class="dropdown-menu">
+            <li><a href="<%= admin_customer_path(customer) %>">Посмотреть</a></li>
+            <li>
+            <% link_to "Удалить посещение", '#visit-list-title', data: { url: delete_admin_visit_path(visit.id), 'block-reload': 'ajax-reload-visits-list' }, class: "ajax-request", method: :delete %>
+            <%= link_to "Удалить посещение", delete_admin_visit_path(visit.id), method: :delete %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -10,6 +10,14 @@ class Admin::ClassSchedulesController < Admin::BaseController
   # GET /class_schedules/1
   # GET /class_schedules/1.json
   def show
+    @visits = @class_schedule.visits
+    @customers = @class_schedule.customers.all
+
+    # @customers.each do |cu|
+    #   # puts cu.to_json
+    #   puts cu.visits.where(class_schedule_id: @class_schedule.id).first.id
+    #   # puts " == #{cu.visits.where(class_schedule_id: @class_schedule.id).first.id}"
+    # end
   end
 
   # GET /class_schedules/new
@@ -25,10 +33,6 @@ class Admin::ClassSchedulesController < Admin::BaseController
   # POST /class_schedules.json
   def create
     @class_schedule = ClassSchedule.new(class_schedule_params)
-
-    @class_schedule.user_id = 1
-    @class_schedule.class_type_id = 1
-    @class_schedule.location_id = 1
 
     respond_to do |format|
       if @class_schedule.save

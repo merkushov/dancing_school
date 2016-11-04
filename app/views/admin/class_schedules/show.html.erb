@@ -1,3 +1,5 @@
+<% provide(:no_table, 1) %>
+
 <div class="page-heading">
   <div class="media clearfix">
     <div class="media-body va-m">
@@ -7,17 +9,47 @@
         - <%= @class_schedule.date_end.strftime("%H:%M") %>
       </h2>
       <p class="lead"></p>
-      
 
-      <!-- <div class="col-md-8"> -->
-        <div class="row">
-          <div class="col-md-6">
-            <label class="field-label">Стоимость занятия</label>
-          </div>
-          <div class="col-md-6"><%= @class_schedule.cost %></div>
+    </div>
+
+    <!-- <div class="col-md-8"> -->
+      <div class="row">
+        <div class="col-md-2">
+          <label class="field-label">Стоимость занятия</label>
         </div>
-      <!-- </div> -->
+        <div class="col-md-10"><%= @class_schedule.cost %> руб. с человека</div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label class="field-label">Преподаватель</label>
+        </div>
+        <div class="col-md-10"><%= @class_schedule.user.full_name %></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label class="field-label">Зал</label>
+        </div>
+        <div class="col-md-10"><%= @class_schedule.location.name %></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label class="field-label">Тип</label>
+        </div>
+        <div class="col-md-10"><%= @class_schedule.class_type.name %></div>
+      </div>
+    <!-- </div> -->
 
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tab-block">
+      <div class="tab-content p30 admin-form theme-primary" id="ajax-reload-visits-list" data-url="<%= admin_class_schedule_visits_path(@class_schedule) %>">
+
+      <%= render 'admin/visits/list', class_schedule: @class_schedule, visits: @visits %>
+        
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  class_schedule: one
+  customer: one
+  is_paid: false
+
+two:
+  class_schedule: two
+  customer: two
+  is_paid: false
