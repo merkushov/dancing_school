@@ -5,34 +5,34 @@
       <div class="col-sm-12">
         <div class="p30">
           <!-- dashboard tiles-->
-          <h2 class="ib mn mr20">Totals</h2><span class="fs15 text-shady-lady">Last Week</span>
+          <h2 class="ib mn mr20">Всего</h2><span class="fs15 text-shady-lady">за всё время</span>
           <div class="row text-center mt35">
             <div class="col-sm-6 col-md-3 br-lg-r">
-              <h2 class="mn fs47 ib pr20 monserrat">597</h2>
+              <h2 class="mn fs47 ib monserrat"><%= @customer_count %></h2>
               <div class="reveal-xlg-inline-block text-center text-xlg-left">
-                <p class="fs15 text-shady-lady mb2">New<br class="veil reveal-xlg-block"> Feedbacks
+                <p class="fs15 text-shady-lady mb2">Учеников<br class="veil reveal-xlg-block"> зарегистрировано
                 </p>
               </div>
             </div>
             <div class="col-sm-6 col-md-3 br-lg-r mt-30 mt-sm-0">
-              <h2 class="mn monserrat fs47 ib pr20">16.6M$</h2>
+              <h2 class="mn monserrat fs47 ib "><%= @customer_regular_count %></h2>
               <div class="reveal-xlg-inline-block text-center text-xlg-left">
-                <p class="fs15 text-shady-lady mb2">Total<br class="veil reveal-xlg-block"> Profit
+                <p class="fs15 text-shady-lady mb2">Постоянных<br class="veil reveal-xlg-block"> Учеников
                 </p>
               </div>
             </div>
             <div class="clearfix visible-sm-block"></div>
             <div class="col-sm-6 col-md-3 br-lg-r mt-30 mt-md-0">
-              <h2 class="mn monserrat fs47 ib pr20">7.5K</h2>
+              <h2 class="mn monserrat fs47 ib "><%= @earned %> ₽</h2>
               <div class="reveal-xlg-inline-block text-center text-xlg-left">
-                <p class="fs15 text-shady-lady mb2">New<br class="veil reveal-xlg-block"> Orders
+                <p class="fs15 text-shady-lady mb2"><br class="veil reveal-xlg-block"> Заработано
                 </p>
               </div>
             </div>
             <div class="col-sm-6 col-md-3 mt-30 mt-md-0">
-              <h2 class="mn monserrat fs47 ib pr20">+48%</h2>
+              <h2 class="mn monserrat fs47 ib "><%= @class_minutes_count %></h2>
               <div class="reveal-xlg-inline-block text-center text-xlg-left">
-                <p class="fs15 text-shady-lady mb2">Brand<br class="veil reveal-xlg-block"> Popularity
+                <p class="fs15 text-shady-lady mb2">Часов<br class="veil reveal-xlg-block"> Занятий
                 </p>
               </div>
             </div>

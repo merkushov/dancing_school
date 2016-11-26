@@ -26,7 +26,7 @@
             <td><%= c.id %></td>
             <td><%= c.last_name + " " + c.first_name + " " + c.middle_name %></td>
             <td data-sort-value="<%= c.created_at.strftime("%Y%m%d%H%M") %>"><%= c.created_at.strftime("%d %B %Y %H:%M") %></td>
-            <td>0</td>
+            <td><%= c.visits.count %></td>
             <td>
               <div class="btn-group text-right">
                 <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>

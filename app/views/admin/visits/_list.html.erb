@@ -37,8 +37,12 @@
           <%= label_tag( visit_key, '', data: { on: "Да", off: "Нет" } )%>
         <% end %>
       </td>
-      <td>-</td>
-      <td>-</td>
+      <td>
+        <% last_visit = customer.visits.where("visits.id != ? and visits.created_at > ?", visit.id, visit.created_at).pluck('visits.created_at').last
+        %>
+        <%= last_visit ? last_visit.strftime("%d %B %Y %H:%M") : '-' %>
+      </td>
+      <td><%= customer.visits.count %></td>
       <td>
         <div class="btn-group text-right">
           <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
