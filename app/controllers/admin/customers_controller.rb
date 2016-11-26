@@ -48,7 +48,7 @@ class Admin::CustomersController < Admin::BaseController
         format.html { redirect_to [:admin, @customer] }
         format.json { render :show, status: :ok, location: @customer }
       else
-        flash[:danger] = 'Возникли проблемы с обновлением данныех Ученика'
+        flash[:danger] = 'Возникли проблемы с обновлением данных Ученика'
         format.html { render :edit }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end

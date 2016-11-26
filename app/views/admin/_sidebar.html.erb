@@ -32,7 +32,8 @@
       <li><a href="#" class="accordion-toggle <%= controller.controller_name == 'class_types' || controller.controller_name == 'locations' ? 'menu-open' : '' %>"><span class="fa fa-book"></span><span class="sidebar-title">Справочники</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
           <li class="<%= controller.controller_name == 'class_types' ? 'active' : '' %>"><a href="<%= admin_class_types_path %>">Типы урока</a></li>
-          <li class="<%= controller.controller_name == 'locations' ? 'active' : '' %>"><a href="<%= admin_locations_path %>">Залы</a></li>
+          <li class="<%= controller.controller_name == 'locations' ? 'active' : '' %>"><a href="<%= admin_locations_path %>">Филиалы</a></li>
+          <li class="<%= controller.controller_name == 'halls' ? 'active' : '' %>"><a href="<%= admin_halls_path %>">Залы</a></li>
         </ul>
       </li>
 

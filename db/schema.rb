@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101084846) do
+ActiveRecord::Schema.define(version: 20161126111121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(version: 20161101084846) do
     t.datetime "date_end",                              null: false
     t.decimal  "cost",          precision: 5, scale: 2, null: false
     t.integer  "class_type_id",                         null: false
-    t.integer  "location_id",                           null: false
     t.integer  "user_id",                               null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.integer  "hall_id"
     t.index ["class_type_id"], name: "index_class_schedules_on_class_type_id", using: :btree
     t.index ["date_begin"], name: "index_class_schedules_on_date_begin", using: :btree
     t.index ["date_end"], name: "index_class_schedules_on_date_end", using: :btree
-    t.index ["location_id"], name: "index_class_schedules_on_location_id", using: :btree
+    t.index ["hall_id"], name: "index_class_schedules_on_hall_id", using: :btree
     t.index ["user_id"], name: "index_class_schedules_on_user_id", using: :btree
   end
 
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20161101084846) do
     t.index ["email"], name: "index_customers_on_email", using: :btree
     t.index ["first_name", "last_name", "middle_name"], name: "index_customers_on_first_name_and_last_name_and_middle_name", using: :btree
     t.index ["phone_mobile"], name: "index_customers_on_phone_mobile", using: :btree
+  end
+
+  create_table "halls", force: :cascade do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_halls_on_location_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -101,8 +110,9 @@ ActiveRecord::Schema.define(version: 20161101084846) do
   end
 
   add_foreign_key "class_schedules", "class_types"
-  add_foreign_key "class_schedules", "locations"
+  add_foreign_key "class_schedules", "halls"
   add_foreign_key "class_schedules", "users"
+  add_foreign_key "halls", "locations"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "visits", "class_schedules"

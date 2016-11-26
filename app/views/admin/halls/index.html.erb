@@ -6,24 +6,22 @@
           <tr>
             <th data-breakpoints="xs sm md" data-type="number">#</th>
             <th>Наименование</th>
-            <th data-breakpoints="xs sm">Адрес</th>
             <th data-sortable="false">Действие</th>
           </tr>
         </thead>
         <tbody>
-          <% @locations.each do |location| %>
+          <% @halls.each do |hall| %>
           <tr>
-            <td><%= location.id %></td>
-            <td><%= location.name %></td>
-            <td><%= location.address %></td>
+            <td><%= hall.id %></td>
+            <td><%= hall.name %></td>
             <td>
               <div class="btn-group text-right">
                 <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
                 <ul role="menu" class="dropdown-menu">
-                  <li><a href="<%= edit_admin_location_path(location) %>">Редактировать</a></li>
-                  <li><a href="<%= admin_location_path(location) %>">Посмотреть</a></li>
+                  <li><a href="<%= edit_admin_hall_path(hall) %>">Редактировать</a></li>
+                  <li><a href="<%= admin_hall_path(hall) %>">Посмотреть</a></li>
                   <li>
-                  <%= link_to "Удалить", delete_admin_location_path(location), method: :delete %>
+                  <%= link_to "Удалить", delete_admin_hall_path(hall), method: :delete %>
                   </li>
                 </ul>
               </div>
@@ -44,8 +42,8 @@
     </div>
   </div>
 
-<a href="<%= new_admin_location_path %>" class="btn ladda-button btn-primary">
-  <span class="ladda-label">Создать Филиал</span>
+<a href="<%= new_admin_hall_path %>" class="btn ladda-button btn-primary">
+  <span class="ladda-label">Создать Зал</span>
 </a>
 
 

@@ -48,7 +48,7 @@ before_action :set_class_type, only: [:show, :edit, :update, :destroy]
         format.html { redirect_to [:admin, @class_type] }
         format.json { render :show, status: :ok, location: @class_type }
       else
-        flash[:danger] = 'Возникли проблемы с обновлением данныех Занятия'
+        flash[:danger] = 'Возникли проблемы с обновлением данных Занятия'
         format.html { render :edit }
         format.json { render json: @class_type.errors, status: :unprocessable_entity }
       end

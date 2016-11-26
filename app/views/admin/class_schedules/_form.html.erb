@@ -47,9 +47,9 @@
         </div>
 
         <div class="section">
-          <%= f.label( :location_id, "Зал", class: "field-label" ) %>
-          <%= f.label( :location_id, class: "field select" ) do %>
-            <%= f.collection_select( :location_id,  Location.all, :id, :name ) %>
+          <%= f.label( :hall_id, "Зал", class: "field-label" ) %>
+          <%= f.label( :hall_id, class: "field select" ) do %>
+            <%= f.collection_select( :hall_id,  Hall.all, :id, :name ) %>
             <i class="arrow"></i>
           <% end %>
         </div>

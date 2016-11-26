@@ -28,11 +28,11 @@ before_action :set_location, only: [:show, :edit, :update, :destroy]
 
     respond_to do |format|
       if @location.save
-        flash[:success] = 'Новый Зал успешно создан'
+        flash[:success] = 'Новый Филиал успешно создан'
         format.html { redirect_to admin_locations_path }
         format.json { render :show, status: :created, location: @location }
       else
-        flash[:danger] = 'Возникли некоторые проблемы с созданием нового Зала';
+        flash[:danger] = 'Возникли некоторые проблемы с созданием нового Филиала';
         format.html { render :new }
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
@@ -44,11 +44,11 @@ before_action :set_location, only: [:show, :edit, :update, :destroy]
   def update
     respond_to do |format|
       if @location.update(location_params)
-        flash[:success] = 'Данные Зала успешно обновлены';
+        flash[:success] = 'Данные Филиала успешно обновлены';
         format.html { redirect_to [:admin, @location] }
         format.json { render :show, status: :ok, location: @location }
       else
-        flash[:danger] = 'Возникли проблемы с обновлением данныех Зала'
+        flash[:danger] = 'Возникли проблемы с обновлением данных Филиала'
         format.html { render :edit }
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
@@ -60,7 +60,7 @@ before_action :set_location, only: [:show, :edit, :update, :destroy]
   def destroy
     @location.destroy
     respond_to do |format|
-      flash[:success] = 'Зал успешно удалён';
+      flash[:success] = 'Филиал успешно удалён';
       format.html { redirect_to admin_locations_path }
       format.json { head :no_content }
     end

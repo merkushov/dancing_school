@@ -20,7 +20,7 @@
             <td data-sort-value="<%= schedule.date_begin.strftime("%Y%m%d%H%M") %>"><%= schedule.date_begin.strftime("%d %B %Y %H:%M") + " - " + schedule.date_end.strftime("%H:%M") %></td>
             <td><%= schedule.user.full_name %></td>
             <td><%= schedule.class_type.name %></td>
-            <td><%= schedule.location.name %></td>
+            <td><%= schedule.hall.full_name %></td>
             <td><%= schedule.cost %></td>
             <td>
               <div class="btn-group text-right">

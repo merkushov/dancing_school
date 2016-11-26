@@ -1,0 +1,39 @@
+<%= form_for([:admin, @hall], id: "form-ui") do |f| %>
+  <div class="panel-body bg-light">
+  
+    <div class="section-divider mb40"><span>Основная информация</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section">
+          <%= f.label( :location_id, "Зал", class: "field-label" ) %>
+          <%= f.label( :location_id, class: "field select" ) do %>
+            <%= f.collection_select( :location_id,  Location.all, :id, :name ) %>
+            <i class="arrow"></i>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :name, "Наименование", class: "field-label" ) %>
+          <%= f.text_field( :name, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :description, class: "field prepend-icon" ) do %>
+            <%= f.text_area( :description, autocomplete: "off", class: "gui-textarea br-light bg-light" ) %>
+            <%= f.label( :description, class: "field-icon" ) do %>
+              <% raw('<i class="fa fa-edit"></i>') %>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="panel-footer">
+    <%= f.submit "Сохранить", class: "button btn-primary" %>
+  </div>
+<% end %>

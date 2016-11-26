@@ -56,7 +56,7 @@ class Admin::ClassSchedulesController < Admin::BaseController
         format.html { redirect_to [:admin, @class_schedule] }
         format.json { render :show, status: :ok, location: @class_schedule }
       else
-        flash[:danger] = 'Возникли проблемы с обновлением данныех Занятия'
+        flash[:danger] = 'Возникли проблемы с обновлением данных Занятия'
         format.html { render :edit }
         format.json { render json: @class_schedule.errors, status: :unprocessable_entity }
       end
@@ -80,6 +80,6 @@ class Admin::ClassSchedulesController < Admin::BaseController
     end
 
     def class_schedule_params
-      params.require(:class_schedule).permit( :date_begin, :date_end, :cost, :class_type_id, :location_id, :user_id )
+      params.require(:class_schedule).permit( :date_begin, :date_end, :cost, :class_type_id, :hall_id, :user_id )
     end
 end
