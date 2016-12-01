@@ -6,6 +6,7 @@
           <tr>
             <th data-breakpoints="xs sm md" data-type="number">#</th>
             <th>Наименование</th>
+            <th>Филиал</th>
             <th data-sortable="false">Действие</th>
           </tr>
         </thead>
@@ -14,6 +15,7 @@
           <tr>
             <td><%= hall.id %></td>
             <td><%= hall.name %></td>
+            <td><%= hall.location.name %></td>
             <td>
               <div class="btn-group text-right">
                 <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
