@@ -5,6 +5,7 @@
 
 //= require admin/customers
 //= require admin/class_schedules
+//= require admin/prices
 
 //= require_self
 

@@ -1,0 +1,35 @@
+<div class="page-heading">
+  <div class="media clearfix">
+    <div class="media-body va-m">
+
+      <h2 class="media-heading">
+        <%= @price.name %>
+      </h2>
+      <p class="lead"><%= @price.description %></p>
+
+    </div>
+
+  
+    <div class="row">
+      <div class="col-md-2">
+        <label class="field-label">Тип начала периода</label>
+      </div>
+      <div class="col-md-10"><%= @price.period_start_type %></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <label class="field-label">Тип конца периода</label>
+      </div>
+      <div class="col-md-10"><%= @price.period_end_type %></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <label class="field-label">Тип лимита</label>
+      </div>
+      <div class="col-md-10"><%= @price.visit_limit_type %></div>
+    </div>
+
+  </div>
+</div>

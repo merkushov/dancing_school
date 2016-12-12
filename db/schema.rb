@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126111121) do
+ActiveRecord::Schema.define(version: 20161210201636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,53 @@ ActiveRecord::Schema.define(version: 20161126111121) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.string   "name",                 limit: 255,                 null: false
+    t.string   "status",               limit: 64,                  null: false
+    t.decimal  "value",                            default: "0.0"
+    t.string   "period_start_type",                                null: false
+    t.string   "period_end_type",                                  null: false
+    t.integer  "period_end_days"
+    t.datetime "period_start_date"
+    t.datetime "period_end_date"
+    t.string   "visit_limit_type",                                 null: false
+    t.integer  "visit_number"
+    t.integer  "visit_hour_number"
+    t.text     "description"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.boolean  "no_scope_class_types",             default: true
+    t.boolean  "no_scope_locations",               default: true
+    t.boolean  "no_scope_users",                   default: true
+  end
+
+  create_table "prices_class_types", id: false, force: :cascade do |t|
+    t.integer "price_id",      null: false
+    t.integer "class_type_id", null: false
+    t.index ["class_type_id", "price_id"], name: "index_prices_class_types_on_class_type_id_and_price_id", using: :btree
+    t.index ["class_type_id"], name: "index_prices_class_types_on_class_type_id", using: :btree
+    t.index ["price_id", "class_type_id"], name: "index_prices_class_types_on_price_id_and_class_type_id", using: :btree
+    t.index ["price_id"], name: "index_prices_class_types_on_price_id", using: :btree
+  end
+
+  create_table "prices_locations", id: false, force: :cascade do |t|
+    t.integer "price_id",    null: false
+    t.integer "location_id", null: false
+    t.index ["location_id", "price_id"], name: "index_prices_locations_on_location_id_and_price_id", using: :btree
+    t.index ["location_id"], name: "index_prices_locations_on_location_id", using: :btree
+    t.index ["price_id", "location_id"], name: "index_prices_locations_on_price_id_and_location_id", using: :btree
+    t.index ["price_id"], name: "index_prices_locations_on_price_id", using: :btree
+  end
+
+  create_table "prices_users", id: false, force: :cascade do |t|
+    t.integer "price_id", null: false
+    t.integer "user_id",  null: false
+    t.index ["price_id", "user_id"], name: "index_prices_users_on_price_id_and_user_id", using: :btree
+    t.index ["price_id"], name: "index_prices_users_on_price_id", using: :btree
+    t.index ["user_id", "price_id"], name: "index_prices_users_on_user_id_and_price_id", using: :btree
+    t.index ["user_id"], name: "index_prices_users_on_user_id", using: :btree
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 127, null: false
     t.datetime "created_at",             null: false
@@ -113,6 +160,12 @@ ActiveRecord::Schema.define(version: 20161126111121) do
   add_foreign_key "class_schedules", "halls"
   add_foreign_key "class_schedules", "users"
   add_foreign_key "halls", "locations"
+  add_foreign_key "prices_class_types", "class_types"
+  add_foreign_key "prices_class_types", "prices"
+  add_foreign_key "prices_locations", "locations"
+  add_foreign_key "prices_locations", "prices"
+  add_foreign_key "prices_users", "prices"
+  add_foreign_key "prices_users", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "visits", "class_schedules"

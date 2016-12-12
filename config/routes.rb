@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :class_types
     resources :locations
     resources :halls
+    resources :prices
 
     # resources :visits
     get     'class_schedules/:class_schedule_id/visits', to: 'visits#list_by_class_schedule', as: 'class_schedule_visits'
@@ -31,5 +32,6 @@ Rails.application.routes.draw do
   get "/admin/locations/:id/delete", to: "admin/locations#destroy", as: "delete_admin_location"
   get "/admin/halls/:id/delete", to: "admin/halls#destroy", as: "delete_admin_hall"
   get "/admin/visits/:id/delete", to: "admin/visits#destroy", as: "delete_admin_visit"
+  get "/admin/prices/:id/delete", to: "admin/prices#destroy", as: "delete_admin_price"
 
 end

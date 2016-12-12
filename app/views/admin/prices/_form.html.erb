@@ -1,0 +1,196 @@
+<%= form_for([:admin, @price], id: "form-ui") do |f| %>
+  <div class="panel-body bg-light">
+  
+    <div class="section-divider mb40"><span>Основная информация</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section">
+          <%= f.label( :name, "Наименование", class: "field-label" ) %>
+          <%= f.text_field( :name, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :description, class: "field prepend-icon" ) do %>
+            <%= f.text_area( :description, autocomplete: "off", class: "gui-textarea br-light bg-light" ) %>
+            <%= f.label( :description, class: "field-icon" ) do %>
+              <% raw('<i class="fa fa-edit"></i>') %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="section">
+          <%= f.label( :value, "Стоимость, руб.", class: "field-label" ) %>
+          <%= f.label( :value, class: "field prepend-icon" ) do %>
+            <%= f.text_field( :value, autocomplete: "off", class: "gui-input" ) %>
+            <%= f.label( :value, class: "field-icon" ) do %>
+              <% raw('<i class="fa fa-rub"></i>') %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider mb40"><span>Ограничения действия</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section row">
+          <%= f.label( :class_type_ids, "Тип занятия", class: "field-label col-md-3" ) %>
+          <div class="col-md-9">
+            <%= f.label( :no_scope_class_types, class: "option block mt10 mb15" ) do %>
+              <%= f.check_box(
+                :no_scope_class_types,
+                {
+                  class: "toggle-select",
+                  "data-select": "price_class_type_ids"
+                }
+              ) %> <span class="checkbox"></span>Без ограничений
+            <% end %>
+            <%= f.collection_select(
+              :class_type_ids,
+              ClassType.all, :id, :name,
+              {},
+              {
+                multiple: true,
+                class: "form-control",
+                disabled: @price.no_scope_class_types?
+              }
+            ) %>
+          </div>
+        </div>
+
+        <div class="section">
+          <%= f.label( :location_ids, "Филиал", class: "field-label col-md-3" ) %>
+          <div class="col-md-9">
+            <%= f.label( :no_scope_locations, class: "option block mt10 mb15" ) do %>
+              <%= f.check_box(
+                :no_scope_locations,
+                {
+                  class: "toggle-select",
+                  "data-select": "price_location_ids"
+                }
+              ) %>
+              <span class="checkbox"></span>Без ограничений
+            <% end %>
+            <%= f.collection_select(
+              :location_ids,
+              Location.all, :id, :name,
+              {},
+              {
+                multiple: true,
+                class: "form-control",
+                disabled: @price.no_scope_locations?
+              }
+            ) %>
+          </div>
+        </div>
+
+        <div class="section">
+          <%= f.label( :user_ids, "Преподаватели", class: "field-label col-md-3" ) %>
+          <div class="col-md-9">
+            <%= f.label( :no_scope_users, class: "option block mt10 mb15" ) do %>
+              <%= f.check_box(
+                :no_scope_users,
+                {
+                  class: "toggle-select",
+                  "data-select": "price_user_ids"
+                }
+              ) %>
+              <span class="checkbox"></span>Без ограничений
+            <% end %>
+            <%= f.collection_select(
+              :user_ids,
+              User.all, :id, :full_name,
+              {},
+              {
+                multiple: true,
+                class: "form-control",
+                disabled: @price.no_scope_users?
+              }
+            ) %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-divider mb40"><span>Установка периода действия Абонемента</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section row">
+          <%= f.label( :period_start_type, "Тип начала периода", class: "field-label col-md-3" ) %>
+          <div class="col-md-9">
+            <%= f.label( :period_start_type, class: "field select" ) do %>
+              <%= f.select( :period_start_type, Price.period_start_type_option_tag_array, { include_blank: true } ) %>
+              <i class="arrow"></i>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="section row">
+          <%= f.label( :period_end_type, "Тип конца периода", class: "field-label col-md-3" ) %>
+          <div class="col-md-9">
+            <%= f.label( :period_end_type, class: "field select" ) do %>
+              <%= f.select( :period_end_type, Price.period_end_type_option_tag_array, { include_blank: true } ) %>
+              <i class="arrow"></i>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="section" style="display: none;">
+          <%= f.label( :period_start_date, "Фиксированная дата начала периода", class: "field-label" ) %>
+          <%= f.text_field( :period_start_date, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+        <div class="section" style="display: none;">
+          <%= f.label( :period_end_date, "Фиксированная дата окончания периода", class: "field-label" ) %>
+          <%= f.text_field( :period_end_date, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+
+        <div class="section" style="display: none;">
+          <%= f.label( :period_end_days, "Количество дней до конца периода", class: "field-label" ) %>
+          <%= f.text_field( :period_end_days, autocomplete: "off", class: "gui-input" ) %>
+        </div>
+      
+      </div>
+    </div>
+    
+    <div class="section-divider mb40"><span>Установка лимитов посещений</span></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        
+      <div class="section row">
+        <%= f.label( :visit_limit_type, "Тип лимита", class: "field-label col-md-3" ) %>
+        <div class="col-md-9">
+          <%= f.label( :visit_limit_type, class: "field select" ) do %>
+            <%= f.select( :visit_limit_type, Price.visit_limit_type_option_tag_array ) %>
+            <i class="arrow"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="section" style="display: none;">
+        <%= f.label( :visit_number, "Количество посещений", class: "field-label" ) %>
+        <%= f.text_field( :visit_number, autocomplete: "off", class: "gui-input" ) %>
+      </div>
+
+      <div class="section" style="display: none;">
+        <%= f.label( :visit_hour_number, "Количество часов", class: "field-label" ) %>
+        <%= f.text_field( :visit_hour_number, autocomplete: "off", class: "gui-input" ) %>
+      </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel-footer">
+    <%= f.submit "Сохранить", class: "button btn-primary" %>
+  </div>
+<% end %>
