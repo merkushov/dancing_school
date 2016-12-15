@@ -31,7 +31,7 @@
         <div class="section">
           <%= f.label( :birthday, "День рождения", class: "field-label" ) %>
           <%= f.label( :birthday, class: "field prepend-icon" ) do %>
-            <%= f.text_field( :birthday, maxlength: 10, autocomplete: "off", placeholder: "11/11/1111", class: "gui-input form-control date" ) %>
+            <%= f.text_field( :birthday, maxlength: 10, autocomplete: "off", placeholder: "11/11/1111", class: "gui-input form-control date", value: f.object.birthday? ? f.object.birthday.strftime("%d-%m-%Y") : "" ) %>
             <%= f.label( :birthday, class: "field-icon" ) do %>
               <% raw('<i class="fa fa-calendar"></i>') %>
             <% end %>
