@@ -7,6 +7,8 @@ class Customer < ApplicationRecord
   end
 
   before_save do
-    self.phone_mobile = self.phone_mobile.gsub!(/\D/, "")
+    if self.phone_mobile?
+      self.phone_mobile.gsub!(/\D/, "")
+    end
   end
 end

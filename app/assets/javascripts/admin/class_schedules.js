@@ -54,7 +54,7 @@ jQuery(document).ready(function () {
       var $btn = $(".post-add-customer-to-class");
       $btn.removeAttr("disabled");
 
-      $("#visit_customer_id").val(datum["id"]);
+      $("#customer_id").val(datum["id"]);
     });
 
   // добавление Ученика к Занятию

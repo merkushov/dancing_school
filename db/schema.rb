@@ -10,20 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210201636) do
+ActiveRecord::Schema.define(version: 20161215085722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "class_groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+  end
+
   create_table "class_schedules", force: :cascade do |t|
-    t.datetime "date_begin",                            null: false
-    t.datetime "date_end",                              null: false
-    t.decimal  "cost",          precision: 5, scale: 2, null: false
-    t.integer  "class_type_id",                         null: false
-    t.integer  "user_id",                               null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "date_begin",                              null: false
+    t.datetime "date_end",                                null: false
+    t.decimal  "cost",            precision: 5, scale: 2, null: false
+    t.integer  "class_type_id",                           null: false
+    t.integer  "user_id",                                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "hall_id"
+    t.integer  "class_groups_id"
+    t.index ["class_groups_id"], name: "index_class_schedules_on_class_groups_id", using: :btree
     t.index ["class_type_id"], name: "index_class_schedules_on_class_type_id", using: :btree
     t.index ["date_begin"], name: "index_class_schedules_on_date_begin", using: :btree
     t.index ["date_end"], name: "index_class_schedules_on_date_end", using: :btree
@@ -53,6 +62,13 @@ ActiveRecord::Schema.define(version: 20161210201636) do
     t.index ["email"], name: "index_customers_on_email", using: :btree
     t.index ["first_name", "last_name", "middle_name"], name: "index_customers_on_first_name_and_last_name_and_middle_name", using: :btree
     t.index ["phone_mobile"], name: "index_customers_on_phone_mobile", using: :btree
+  end
+
+  create_table "customers_class_groups", id: false, force: :cascade do |t|
+    t.integer "customer_id",    null: false
+    t.integer "class_group_id", null: false
+    t.index ["class_group_id", "customer_id"], name: "index_customers_class_groups_on_class_group_id_and_customer_id", using: :btree
+    t.index ["customer_id", "class_group_id"], name: "index_customers_class_groups_on_customer_id_and_class_group_id", using: :btree
   end
 
   create_table "halls", force: :cascade do |t|
@@ -156,9 +172,12 @@ ActiveRecord::Schema.define(version: 20161210201636) do
     t.index ["customer_id"], name: "index_visits_on_customer_id", using: :btree
   end
 
+  add_foreign_key "class_schedules", "class_groups", column: "class_groups_id"
   add_foreign_key "class_schedules", "class_types"
   add_foreign_key "class_schedules", "halls"
   add_foreign_key "class_schedules", "users"
+  add_foreign_key "customers_class_groups", "class_groups", on_delete: :cascade
+  add_foreign_key "customers_class_groups", "customers", on_delete: :cascade
   add_foreign_key "halls", "locations"
   add_foreign_key "prices_class_types", "class_types"
   add_foreign_key "prices_class_types", "prices"

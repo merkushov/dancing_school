@@ -24,6 +24,11 @@
           <span class="fa fa-users"></span><span class="sidebar-title">Ученики </span>
         </a>
       </li>
+      <li class="<%= controller.controller_name == 'class_groups' ? 'active' : '' %>">
+        <a href="<%= admin_class_groups_path %>">
+          <span class="fa fa-users"></span><span class="sidebar-title">Группы учеников </span>
+        </a>
+      </li>
       <li><a href="#" class="accordion-toggle <%= controller.controller_name == 'class_schedules' ? 'menu-open' : '' %>"><span class="fa fa-money"></span><span class="sidebar-title">Биллинг</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
           <li class="<%= controller.controller_name == 'class_schedules' ? 'active' : '' %>"><a href="<%= admin_class_schedules_path %>">Занятия</a></li>

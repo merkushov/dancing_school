@@ -1,0 +1,50 @@
+<div class="tray tray-center">
+  <div id="spy3" class="panel">
+    <div class="panel-body pn">
+      <table data-page-navigation=".pagination" data-sorting="true" data-page-size="6" class="table footable">
+        <thead>
+          <tr>
+            <th data-breakpoints="xs sm md" data-type="number">#</th>
+            <th data-type="number">Наименование</th>
+            <th data-sortable="false">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @class_groups.each do |class_group| %>
+          <tr>
+            <td><%= class_group.id %></td>
+            <td><%= class_group.name %></td>
+            <td>
+              <div class="btn-group text-right">
+                <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a href="<%= edit_admin_class_group_path(class_group) %>">Редактировать</a></li>
+                  <li><a href="<%= admin_class_group_path(class_group) %>">Посмотреть</a></li>
+                  <li>
+                  <%= link_to "Удалить", delete_admin_class_group_path(class_group), method: :delete %>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+        <tfoot class="footer-menu">
+          <tr>
+            <td colspan="3">
+              <nav class="text-right">
+                <ul class="pagination hide-if-no-paging"></ul>
+              </nav>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+<a href="<%= new_admin_class_group_path %>" class="btn ladda-button btn-primary">
+  <span class="ladda-label">Создать Группу учеников</span>
+</a>
+
+
+</div>

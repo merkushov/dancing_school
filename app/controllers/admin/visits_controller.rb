@@ -1,6 +1,8 @@
 class Admin::VisitsController < Admin::BaseController
   before_action :set_visit, only: [:update, :destroy]
 
+  # GET /class_schedules/:class_schedule_id/visits
+  # рендерит шаблон со списком визитов
   def list_by_class_schedule
     @class_schedule = ClassSchedule.find(params[:class_schedule_id])
     @visits = @class_schedule.visits

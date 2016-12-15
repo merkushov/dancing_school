@@ -1,0 +1,24 @@
+<% provide(:no_table, '1') %>
+
+<div class="page-heading">
+  <div class="media clearfix">
+    <div class="media-body va-m">
+
+      <h2 class="media-heading"><%= @class_group.name %></h2>
+      <p class="lead"><%= @class_group.description %></p>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tab-block">
+      <div class="tab-content p30 admin-form theme-primary">
+
+        <%= render 'form_add_customer', class_group: @class_group %>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     resources :locations
     resources :halls
     resources :prices
+    resources :class_groups do
+      post  "customer/add", to: "class_groups#add_customer", on: :member, as: :add_customer
+      get  "customer/:customer_id/delete", to: "class_groups#delete_customer",
+        on: :member, as: :delete_customer
+    end
 
     # resources :visits
     get     'class_schedules/:class_schedule_id/visits', to: 'visits#list_by_class_schedule', as: 'class_schedule_visits'
@@ -33,5 +38,6 @@ Rails.application.routes.draw do
   get "/admin/halls/:id/delete", to: "admin/halls#destroy", as: "delete_admin_hall"
   get "/admin/visits/:id/delete", to: "admin/visits#destroy", as: "delete_admin_visit"
   get "/admin/prices/:id/delete", to: "admin/prices#destroy", as: "delete_admin_price"
+  get "/admin/class_groups/:id/delete", to: "admin/class_groups#destroy", as: "delete_admin_class_group"
 
 end

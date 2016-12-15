@@ -1,0 +1,50 @@
+<h2 id="customers-list-title">Ученики</h2>
+
+<div class="row">
+  <%= form_for( :class_group, url: add_customer_admin_class_group_path, id: "form-ui") do |f| %>
+  <div class="col-md-8">
+    <%= hidden_field_tag( :class_group_id, value: @class_group.id ) %>
+    <%= hidden_field_tag( :customer_id ) %>
+    <%= label_tag( :customer_name, class: "field prepend-icon" ) do %>
+      <%= text_field_tag( :customer_name, "", { autocomplete: "off", placeholder: "Поиск Ученика по ФИО", class: "form-control typeahead" } ) %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= f.submit "Добавить Ученика", disabled: true, class: "btn btn-primary post-add-customer-to-class" %>
+  </div>
+  <% end %>
+</div>
+
+<table class="table footable">
+  <thead>
+    <tr>
+      <th>ФИО</th>
+      <th>Контакты</th>
+      <th>Возраст</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.full_name %></td>
+      <td><%= number_to_phone( customer.phone_mobile, area_code: true ) %></td>
+      <td>
+        <%# customer.birthday? ? (Time.now.year - customer.birthday.to_date.year) : '' %>
+        <%= age( customer.birthday ) %>
+      </td>  
+      <td>
+        <div class="btn-group text-right">
+          <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Active<span class="caret ml5"></span></button>
+          <ul role="menu" class="dropdown-menu">
+            <li><a href="<%= admin_customer_path(customer) %>">Посмотреть профиль</a></li>
+            <li>
+              <%= link_to "Удалить из Группы", delete_customer_admin_class_group_path(class_group.id, customer.id), method: :delete %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
